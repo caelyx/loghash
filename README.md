@@ -8,7 +8,7 @@ Uses a chained SHA1 hash to spot if a line in a file has been altered.
 Notes on use
 ------------
 
-* Replace the SALT in both `loghash.py` and `verify.py` with a random value of your choosing. This doesn't mildly reduces the likelihood that a rainbow table could be used against your instance.
+* Replace the SALT in both `loghash.py` and `verify.py` with a random value of your choosing. This mildly reduces the likelihood that a rainbow table could be used against your instance.
 * At present, this works only on files named input.txt and emits output.txt.  Adaptation to arbitrary files and/or streams should be easy, but hasn't been done.
 
 Sample output
