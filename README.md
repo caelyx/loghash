@@ -19,7 +19,7 @@ Given this input file and the default SALT:
 ```
 This is a logfile that we would like to secure.
 We want to detect whether
-anything
+something
 is changed later, after the log has been created.
 But specifically, which lines.
 ```

@@ -10,26 +10,28 @@ import sha
 
 SALT = '844cde87865f882399dcffcecb002e5397f9d177'
 
-def hashOneLine(previousHash, line): 
+def hash_one_line(previous_hash, line):
     """ Given a previous hash and a line of text, defang the line,
     hash it, and return the hash and the formatted line. """
-    formattedLine = previousHash + ' ' + line.replace('\n', ' ')
-    newHash = sha.sha(formattedLine + SALT).hexdigest()
-    return (newHash, formattedLine)
+    formatted_line = previous_hash + ' ' + line.replace('\n', ' ')
+    new_hash = sha.sha(formatted_line + SALT).hexdigest()
+    return (new_hash, formatted_line)
 
-def hashLines(lines, previousHash=SALT):
+
+def hashLines(lines, previous_hash=SALT):
     output = []
-    for l in lines: 
-        (newHash, formattedLine) = hashOneLine(previousHash, l)
-        output.append(formattedLine + "\n")
-        previousHash = newHash
-    output.append(newHash + " -\n")
+    for l in lines:
+        (new_hash, formatted_line) = hash_one_line(previous_hash, l)
+        output.append(formatted_line + "\n")
+        previous_hash = new_hash
+    output.append(new_hash + " -\n")
     return output
 
-def hashFile(fInput='input.txt', fOutput='output.txt'): 
-    fi = open(fInput)
-    fo = open(fOutput, 'w')
-    
+
+def hashFile(f_input='input.txt', f_output='output.txt'):
+    fi = open(f_input)
+    fo = open(f_output, 'w')
+
     inputlines = fi.readlines()
     outputlines = hashLines(inputlines)
     fo.writelines(outputlines)
@@ -37,6 +39,5 @@ def hashFile(fInput='input.txt', fOutput='output.txt'):
     fo.close()
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     hashFile()
-
